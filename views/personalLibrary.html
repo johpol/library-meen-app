@@ -1,20 +1,25 @@
 <!DOCTYPE>
-<html>
+<html ng-app="libraryApp">
 <head>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-
-<title>Personal Library</title>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/js/core.js"></script>
+    <script src="/js/controllers/main.js"></script>
+    <script src="/js/services/libraryBooks.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container" ng-controller="mainController">
         <center><h1>Personal Library</h1></center>
     <br>
-    <center><input type="text" placeholder="ISBN" />
-        <button class="btn btn-primary" ng-click="addBook()">Fetch My Book!</button></center>
+        <center><input type="text" placeholder="ISBN" /></center>
+        <br>
+        <center><button class="btn btn-primary" ng-click="addBook()">Fetch My Book!</button></center>
+        <br>
     <table class="table">
         <thead>
             <tr>
@@ -26,12 +31,11 @@
             </tr>
         </thead>
         <tbody>
-            <!--populate with some dummy data for now-->
-            <tr>
-                <td>A Great Adventure</td>
-                <td>John Smith</td>
-                <td>Random House</td>
-                <td>Fiction</td>
+            <tr ng-repeat="book in books">
+                <td>{{book.book}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.publisher}}</td>
+                <td>{{book.genre}}</td>
                 <td><button class="btn btn-danger" ng-click="remove(booklist._id)">Remove</button></td>
             </tr>
         </tbody>
