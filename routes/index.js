@@ -21,4 +21,20 @@ router.get('/book', function(req, res) {
     });
 });
 
+router.delete('/book/:book_id', function (req, res) {
+    bk.remove({
+        _id: req.params.book_id
+    }, function (err, book) {
+        if (err) {
+            res.send(err);
+        }
+
+        bk.find(function(err, book) {
+        if(err)
+            res.send(err)
+        res.json(book);
+
+    });
+})});
+
 module.exports = router;
