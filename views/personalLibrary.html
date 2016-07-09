@@ -16,9 +16,9 @@
     <div class="container" ng-controller="mainController">
         <center><h1>Personal Library</h1></center>
     <br>
-        <center><input type="text" placeholder="ISBN" /></center>
+        <center><input type="text" placeholder="ISBN" ng-model="formData.text" /></center>
         <br>
-        <center><button class="btn btn-primary" ng-click="addBook()">Fetch My Book!</button></center>
+        <center><button class="btn btn-primary" ng-click="createBook()">Fetch My Book!</button></center>
         <br>
     <table class="table">
         <thead>
