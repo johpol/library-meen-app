@@ -1,1 +1,36 @@
-include personalLibrary.html
+doctype html
+html(ng-app='libraryApp')
+    head
+        link(href='/bower_components/bootstrap-css/css/bootstrap.min.css', rel='stylesheet')
+        link(href='/bower_components/bootstrap-css/css/bootstrap-theme.min.css', rel='stylesheet')
+        script(src='/bower_components/angular/angular.js')
+        script(src='/js/core.js')
+        script(src='/js/controllers/main.js')
+        script(src='/js/services/libraryBooks.js')
+    body
+        div(class='container', ng-controller='mainController')
+            center
+                h1 Personal Library
+            br
+            center
+                input(type='text', placeholder='ISBN', ng-model='formData.text')
+            br
+            center
+                button(class='btn btn-primary', ng-click='createBook()') Fetch My Book!
+            br
+            table(class='table table-striped')
+                thead
+                    tr
+                        th Title
+                        th Author
+                        th Publisher
+                        th Genere
+                        th Remove
+                tbody
+                    tr(ng-repeat='book in books')
+                        td {{book.book}}
+                        td {{book.author}}
+                        td {{book.publisher}}
+                        td {{book.genre}}
+                        td
+                            button(class='btn btn-danger', ng-click='deleteBook(book._id)') Remove
