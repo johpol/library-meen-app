@@ -24,13 +24,13 @@ html(ng-app='libraryApp')
                         th Title
                         th Author
                         th Publisher
-                        th Genere
+                        th Subject
                         th Remove
                 tbody
                     tr(ng-repeat='book in books')
                         td {{book.book}}
                         td {{book.author}}
                         td {{book.publisher}}
-                        td {{book.genre}}
+                        td {{book.subject}}
                         td
                             button(class='btn btn-danger', ng-click='deleteBook(book._id)') Remove
