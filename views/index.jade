@@ -7,8 +7,8 @@ html(ng-app='libraryApp')
         script(src='/js/core.js')
         script(src='/js/controllers/main.js')
         script(src='/js/services/libraryBooks.js')
-    body
-        div(class='container', ng-controller='mainController')
+    body(ng-controller='mainController')
+        div(class='container')
             center
                 h1 Personal Library
             br
