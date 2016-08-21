@@ -9,15 +9,12 @@ html(ng-app='libraryApp')
         script(src='/js/services/libraryBooks.js')
     body(ng-controller='mainController')
         div(class='container')
-            center
-                h1 Personal Library
-            br
-            center
-                input(type='text', placeholder='ISBN', ng-model='formData.text')
-            br
-            center
-                button(class='btn btn-primary', ng-click='createBook()') Fetch My Book!
-            br
+            div(class='form-group')
+                h1(class='text-center') Personal Library
+            div(class='form-group')
+                input(class='center-block' type='text', placeholder='ISBN', ng-model='formData.text')
+            div(class='form-group')
+                button(class='btn btn-primary center-block', ng-click='createBook()') Fetch My Book!
             div(class='form-group')
                 div(class='input-group')
                     div(class='input-group-addon')
