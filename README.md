@@ -22,7 +22,7 @@ The goal is to build a RESTful API in order to gain knowledge of the various tec
 > npm install
 > npm start
 ```
-
+_Note: It is assumed that there is a MongoDB instance running locally._
 # ToDo
-- [ ] Live search bar
+- [x] Live search bar
 - [ ] Ability for users to edit book information
