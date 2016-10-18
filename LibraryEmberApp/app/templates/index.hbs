@@ -1,1 +1,42 @@
-<h1>Hello, World!</h1>
+<style>
+	.bottom-margin {
+		margin-bottom: 30px;
+	}
+</style>
+<div class='container'>
+	<h1 class='text-center bottom-margin'>Personal Library</h1>
+	<div class='input-group bottom-margin'>
+		<input type='text' class='form-control' placeholder='ISBN-10' />
+		<span class='input-group-btn'>
+            <button class='btn btn-primary' type='button'>Fetch My Book!</button>
+        </span>
+	</div>
+	<div class='input-group bottom-margin'>
+		<div class='input-group-addon'>
+			<span class='glyphicon glyphicon-search' aria-hidden='true'></span>
+		</div>
+		<input type='text' class='form-control' placeholder='Search Library' />
+	</div>
+	<table class='table table-striped'>
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Author</th>
+				<th>Publisher</th>
+				<th>Subjet</th>
+				<th>Remove</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>
+					<button class='btn btn-danger'>Remove</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
