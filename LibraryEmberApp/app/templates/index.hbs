@@ -28,15 +28,17 @@
 			</tr>
 		</thead>
 		<tbody>
+			{{#each model as |book|}}
 			<tr>
-				<td>Some Book</td>
-				<td>Some Author</td>
-				<td>Some Publisher</td>
-				<td>Some Subject</td>
+				<td>{{book.book}}</td>
+				<td>{{book.author}}</td>
+				<td>{{book.publisher}}</td>
+				<td>{{book.subject}}</td>
 				<td>
 					<button class='btn btn-danger'>Remove</button>
 				</td>
 			</tr>
+			{{/each}}
 		</tbody>
 	</table>
 </div>
