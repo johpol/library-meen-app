@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var nodeIsbn = require('node-isbn');
+var path = require('path');
 
 mongoose.connect('mongodb://localhost/LibraryApp'); 
 
@@ -16,8 +17,8 @@ var bk = mongoose.model('Book',
 );
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', function (req, res) {
+    res.sendFile(path.resolve('./LibraryEmberApp/dist/index.html'))
 });
 
 router.get('/book', function(req, res) {

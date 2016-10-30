@@ -23,6 +23,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
+app.use('/assets', express.static(__dirname + '/LibraryEmberApp/dist/assets'));
+app.use('/fonts', express.static(__dirname + '/LibraryEmberApp/dist/fonts'));
+app.use('/LibraryEmberApp/dist', express.static(__dirname + '/LibraryEmberApp/dist'));
 
 app.use('/', routes);
 app.use('/users', users);
