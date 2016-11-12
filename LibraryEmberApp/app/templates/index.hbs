@@ -6,9 +6,9 @@
 <div class='container'>
 	<h1 class='text-center bottom-margin'>Personal Library</h1>
 	<div class='input-group bottom-margin'>
-		<input type='text' class='form-control' placeholder='ISBN-10' />
+		{{input type='text' class='form-control' placeholder='ISBN-10' value=isbn}}
 		<span class='input-group-btn'>
-            <button class='btn btn-primary' type='button'>Fetch My Book!</button>
+            <button class='btn btn-primary' type='button' {{action (route-action 'postIsbn' isbn)}}>Fetch My Book!</button>
         </span>
 	</div>
 	<div class='input-group bottom-margin'>
