@@ -10,17 +10,5 @@ export default Ember.Route.extend({
       });
       console.log(mod);
       return mod;
-    },
-
-    actions: {
-        postIsbn(isbn) {
-            console.log(isbn);
-            return this.get('ajax').request('/book', {
-                method: 'POST',
-                data: {
-                    text: isbn
-                }
-            });
-        }
     }
 });
