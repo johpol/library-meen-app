@@ -35,7 +35,7 @@
 				<td>{{book.publisher}}</td>
 				<td>{{book.subject}}</td>
 				<td>
-					<button class='btn btn-danger'>Remove</button>
+					<button class='btn btn-danger' {{action 'deleteIsbn' book._id}}>Remove</button>
 				</td>
 			</tr>
 			{{/each}}
