@@ -36,7 +36,7 @@ export default Ember.Controller.extend({
         if (filter === '') {
             return model;
         } else {
-            return this.get('model').filter(function (item) {
+            return this.get('model').filter(item => {
                 return item.book.toLowerCase().indexOf(filter) !== -1;
             });
         }
