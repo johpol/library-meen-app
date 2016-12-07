@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
     ajax: Ember.inject.service(),
+    searchString: '',
 
     actions: {
         postIsbn() {
@@ -26,5 +27,18 @@ export default Ember.Controller.extend({
                 Ember.set(this, 'model', data);
             });
         }
-    }
+    },
+
+    filterLibrary: Ember.computed('searchString', 'model', function() {
+        let filter = Ember.get(this, 'searchString').toLowerCase();
+        let model = Ember.get(this, 'model');
+        
+        if (filter === '') {
+            return model;
+        } else {
+            return this.get('model').filter(function (item) {
+                return item.book.toLowerCase().indexOf(filter) !== -1;
+            });
+        }
+    })
 });
