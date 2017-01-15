@@ -8,12 +8,13 @@ mongoose.connect('mongodb://localhost/LibraryApp');
 
 var bk = mongoose.model('Book',
     new mongoose.Schema({
+        isbn: String,
         book: String,
         author: String,
         publisher: String,
         subject: String
     }),
-    'books'
+    'books_with_isbn'
 );
 
 /* GET home page. */
@@ -50,6 +51,7 @@ router.post('/book', function (req, res) {
         } else {
             console.log('Book found %j', isbnBook);
             bk.create({
+                isbn: isbnBook.industryIdentifiers[1].identifier,
                 book: isbnBook.title,
                 author: isbnBook.authors,
                 publisher: isbnBook.publisher,

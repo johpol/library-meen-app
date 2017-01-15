@@ -24,6 +24,7 @@
 				<th>Author</th>
 				<th>Publisher</th>
 				<th>Subject</th>
+				<th>ISBN</th>
 				<th>Remove</th>
 			</tr>
 		</thead>
@@ -34,6 +35,7 @@
 				<td>{{book.author}}</td>
 				<td>{{book.publisher}}</td>
 				<td>{{book.subject}}</td>
+				<td>{{book.isbn}}</td>
 				<td>
 					<button class='btn btn-danger' {{action 'deleteIsbn' book._id}}>Remove</button>
 				</td>
