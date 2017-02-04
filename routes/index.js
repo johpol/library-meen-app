@@ -38,12 +38,13 @@ router.delete('/book/:book_id', function (req, res) {
             res.send(err);
         }
 
-        findBook(res);
-        })
+        res.status(204).send();
+    })
 });
 
 router.post('/book', function (req, res) {
-    var isbn = req.body.text;
+    console.log(req.body);
+    var isbn = req.body.book.tempIsbn;
 
     nodeIsbn.resolve(isbn, function (err, isbnBook) {
         if (err) {
@@ -51,26 +52,24 @@ router.post('/book', function (req, res) {
         } else {
             console.log('Book found %j', isbnBook);
             bk.create({
-                isbn: isbnBook.industryIdentifiers[1].identifier,
+                isbn: isbn,
                 book: isbnBook.title,
                 author: isbnBook.authors,
                 publisher: isbnBook.publisher,
                 subject: isbnBook.categories
-            }, function (err, todo) {
-                if (err)
+            }, function (err, newBook) {
+                if (err) {
                     res.send(err);
-                findBook(res);
+                }
+                bk.find({_id: newBook._id}, function(err, book) {
+                    if(err) {
+                        res.send(err);
+                    }
+                    res.json(book);
+                })
             });
         }
     });
 });
-
-function findBook(res) {
-    bk.find(function (err, book) {
-        if (err)
-            res.send(err)
-        res.json(book);
-    });
-}
 
 module.exports = router;

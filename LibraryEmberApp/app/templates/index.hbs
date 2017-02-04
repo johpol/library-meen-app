@@ -29,7 +29,8 @@
 			</tr>
 		</thead>
 		<tbody>
-			{{#each filterLibrary as |book|}}
+			{{!--{{#each filterLibrary as |book|}}--}}
+			{{#each model as |book|}}
 			<tr>
 				<td>{{book.book}}</td>
 				<td>{{book.author}}</td>

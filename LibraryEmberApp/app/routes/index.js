@@ -4,11 +4,6 @@ export default Ember.Route.extend({
     ajax: Ember.inject.service(),
 
     model() {
-        let mod;
-        mod = this.get('ajax').request('/book', {
-        method: 'GET'
-      });
-      console.log(mod);
-      return mod;
+        return this.store.findAll('book');
     }
 });
