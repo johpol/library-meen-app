@@ -13,6 +13,7 @@ export default Ember.Controller.extend({
                 tempIsbn: isbn
             });
             bookStore.save();
+            Ember.set(this, 'isbn', '');
         },
 
         deleteIsbn(bookID) {
@@ -23,15 +24,17 @@ export default Ember.Controller.extend({
     },
 
     filterLibrary: Ember.computed('searchString', 'model', function() {
-        let filter = Ember.get(this, 'searchString').toLowerCase();
+        let filter = Ember.get(this, 'searchString');
         let model = Ember.get(this, 'model');
         
-        if (filter === '') {
+        if(filter === '') {
             return model;
         } else {
-            return this.get('model').filter(item => {
-                return item.book.toLowerCase().indexOf(filter) !== -1;
-            });
+        let filteredLibrary = model.filter(function(book) {
+            return book.get('book').toLowerCase().indexOf(filter.toLowerCase()) !== -1;
+        });
+
         }
+        return filteredLibrary;
     })
 });
