@@ -26,15 +26,13 @@ export default Ember.Controller.extend({
     filterLibrary: Ember.computed('searchString', 'model', function() {
         let filter = Ember.get(this, 'searchString');
         let model = Ember.get(this, 'model');
-        
-        if(filter === '') {
+
+        if (filter === '') {
             return model;
         } else {
-        let filteredLibrary = model.filter(function(book) {
-            return book.get('book').toLowerCase().indexOf(filter.toLowerCase()) !== -1;
-        });
-
+            return model.filter(function (book) {
+                return book.get('book').toLowerCase().indexOf(filter.toLowerCase()) !== -1;
+            });
         }
-        return filteredLibrary;
     })
 });
