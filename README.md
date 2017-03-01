@@ -17,9 +17,20 @@ The goal is to refactor the library MEAN application (version controlled as libr
 - Bower
 
 # Installation
+## Ember Application
+### Within LibraryEmberApp:
+```
+> bower install
+> npm install
+> ember build -e production
+```
+## Node.JS Application
+### In the root directory:
 ```
 > bower install
 > npm install
 > npm start
 ```
+Navigate to localhost:3000
+
 _Note: It is assumed that there is a MongoDB instance running locally._
