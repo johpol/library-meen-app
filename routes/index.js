@@ -9,7 +9,7 @@ mongoose.connect('mongodb://localhost/LibraryApp');
 var bk = mongoose.model('Book',
     new mongoose.Schema({
         isbn: String,
-        book: String,
+        title: String,
         author: String,
         publisher: String,
         subject: String
@@ -53,7 +53,7 @@ router.post('/book', function (req, res) {
             console.log('Book found %j', isbnBook);
             bk.create({
                 isbn: isbn,
-                book: isbnBook.title,
+                title: isbnBook.title,
                 author: isbnBook.authors,
                 publisher: isbnBook.publisher,
                 subject: isbnBook.categories

@@ -5,7 +5,7 @@ const {
 } = DS;
 export default DS.Model.extend({
     _id: attr('string'),
-    book: attr('string'),
+    title: attr('string'),
     author: attr('string'),
     publisher: attr('string'),
     isbn: attr('string'),
