@@ -31,7 +31,7 @@ export default Ember.Controller.extend({
             return model;
         } else {
             return model.filter(function (book) {
-                return book.get('book').toLowerCase().indexOf(filter.toLowerCase()) !== -1;
+                return book.get('title').toLowerCase().indexOf(filter.toLowerCase()) !== -1;
             });
         }
     })
