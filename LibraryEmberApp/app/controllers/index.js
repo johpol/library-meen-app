@@ -2,11 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
     ajax: Ember.inject.service(),
-    searchString: '',
 
     actions: {
-        postIsbn() {
-            let isbn = Ember.get(this, 'isbn');
+        postIsbn(isbn) {
             console.log(isbn);
 
             let bookStore = this.store.createRecord('book', {
@@ -21,18 +19,5 @@ export default Ember.Controller.extend({
                 book.destroyRecord();
             });
         }
-    },
-
-    filterLibrary: Ember.computed('searchString', 'model', function() {
-        let filter = Ember.get(this, 'searchString');
-        let model = Ember.get(this, 'model');
-
-        if (filter === '') {
-            return model;
-        } else {
-            return model.filter(function (book) {
-                return book.get('title').toLowerCase().indexOf(filter.toLowerCase()) !== -1;
-            });
-        }
-    })
+    }
 });
