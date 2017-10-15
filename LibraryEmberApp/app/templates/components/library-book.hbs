@@ -37,7 +37,7 @@
 				<td>{{book.subject}}</td>
 				<td>{{book.isbn}}</td>
 				<td>
-					<button class='btn btn-danger' {{action (action deleteIsbn book._id)}}>Remove</button>
+					<button class='btn btn-danger' {{action (action deleteIsbn book.id)}}>Remove</button>
 				</td>
 			</tr>
 			{{/each}}

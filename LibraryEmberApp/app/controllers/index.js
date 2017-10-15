@@ -8,14 +8,14 @@ export default Ember.Controller.extend({
             console.log(isbn);
 
             let bookStore = this.store.createRecord('book', {
-                tempIsbn: isbn
+                isbn: isbn
             });
             bookStore.save();
             Ember.set(this, 'isbn', '');
         },
 
         deleteIsbn(bookID) {
-            this.store.findRecord('book', bookID, { backgroundReload: false }).then(function(book) {
+            this.store.findRecord('book', bookID, { backgroundReload: false }).then(book => {
                 book.destroyRecord();
             });
         }

@@ -1,7 +1,4 @@
 import DS from 'ember-data';
 
-export default DS.RESTAdapter.extend({
-    pathForType() {
-        return 'book';
-    }
+export default DS.JSONAPIAdapter.extend({
 });

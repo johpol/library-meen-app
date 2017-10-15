@@ -8,13 +8,16 @@ mongoose.connect('mongodb://localhost/LibraryApp');
 
 var bk = mongoose.model('Book',
     new mongoose.Schema({
-        isbn: String,
-        title: String,
-        author: String,
-        publisher: String,
-        subject: String
+        type: String,
+        attributes: {
+            isbn: String,
+            title: String,
+            author: String,
+            publisher: String,
+            subject: String
+        }
     }),
-    'books_with_isbn'
+    'books_with_isbn_jsonapi'
 );
 
 /* GET home page. */
@@ -22,51 +25,58 @@ router.get('/', function (req, res) {
     res.sendFile(path.resolve('./LibraryEmberApp/dist/index.html'))
 });
 
-router.get('/book', function(req, res) {
+router.get('/books', function(req, res) {
     bk.find(function(err, book) {
-        if(err)
+        if(err) {
             res.send(err)
-        res.json(book);
+        }
+
+        res.json({'data':book});
     });
 });
 
-router.delete('/book/:book_id', function (req, res) {
+router.delete('/books/:book_id', function (req, res) {
+    console.log(req.params);
     bk.remove({
         _id: req.params.book_id
     }, function (err, book) {
         if (err) {
             res.send(err);
         }
-
-        res.status(204).send();
     })
+    
+    res.status(204).send();
 });
 
-router.post('/book', function (req, res) {
+router.post('/books', function (req, res) {
     console.log(req.body);
-    var isbn = req.body.book.tempIsbn;
+    var attributes = req.body.data.attributes;
 
-    nodeIsbn.resolve(isbn, function (err, isbnBook) {
+    nodeIsbn.resolve(attributes.isbn, function (err, isbnBook) {
         if (err) {
             console.log('Book not found', err);
         } else {
             console.log('Book found %j', isbnBook);
             bk.create({
-                isbn: isbn,
-                title: isbnBook.title,
-                author: isbnBook.authors,
-                publisher: isbnBook.publisher,
-                subject: isbnBook.categories
+                type: 'books',
+                attributes: {
+                    title: isbnBook.title,
+                    author: isbnBook.authors,
+                    publisher: isbnBook.publisher,
+                    subject: isbnBook.categories,
+                    isbn: isbnBook.industryIdentifiers[0].identifier
+                }
             }, function (err, newBook) {
                 if (err) {
                     res.send(err);
                 }
-                bk.find({_id: newBook._id}, function(err, book) {
-                    if(err) {
+
+                bk.find({ _id: newBook._id }, function (err, book) {
+                    if (err) {
                         res.send(err);
                     }
-                    res.json(book);
-                })
+                    res.json({ data: book[0] });
+                });
             });
         }
     });
