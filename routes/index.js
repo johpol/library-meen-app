@@ -54,7 +54,21 @@ router.post('/books', function (req, res) {
 
     nodeIsbn.resolve(attributes.isbn, function (err, isbnBook) {
         if (err) {
+            var error = {
+                "errors": [
+                    {
+                        "status": "422",
+                        "code": "Invalid ISBN",
+                        "title": "Invalid ISBN",
+                        "detail": err.toString(),
+                        "source": {
+                            "pointer": "/data/book/isbn/"
+                        }
+                    }
+                ]
+            };
             console.log('Book not found', err);
+            res.status(422).send(error);
         } else {
             console.log('Book found %j', isbnBook);
             bk.create({

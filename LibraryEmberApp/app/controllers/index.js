@@ -1,17 +1,27 @@
 import Ember from 'ember';
 
-export default Ember.Controller.extend({
-    ajax: Ember.inject.service(),
+const {Controller, set, inject:{service}} = Ember;
+
+export default Controller.extend({
+    ajax: service(),
 
     actions: {
         postIsbn(isbn) {
             console.log(isbn);
 
+            let m = this.get('model');
+            m.forEach(bkModel => {
+                if(!bkModel.get('isValid')) {
+                    this.store.unloadRecord(bkModel);
+                }
+            });
+
             let bookStore = this.store.createRecord('book', {
                 isbn: isbn
             });
             bookStore.save();
-            Ember.set(this, 'isbn', '');
+            
+            set(this, 'isbn', '');
         },
 
         deleteIsbn(bookID) {

@@ -12,7 +12,7 @@ export default Component.extend({
         if (filter === '') {
             return model;
         } else {
-            return model.filter(function (book) {
+            return model.filter(book => {
                 return book.get('title').toLowerCase().indexOf(filter.toLowerCase()) !== -1;
             });
         }

@@ -17,6 +17,16 @@
 		</div>
 		{{input type='text' class='form-control' placeholder='Search Library' value=searchString}}
 	</div>
+	{{#each filterLibrary as |bk|}}
+		{{#if bk.errors}}
+			<div class="alert alert-danger text-center">
+			{{#each bk.errors as |err|}}
+				{{log err.message}}
+				<strong>{{err.message}}</strong>
+			{{/each}}
+			</div>
+		{{/if}}
+	{{/each}}
 	<table class='table table-striped'>
 		<thead>
 			<tr>
@@ -30,6 +40,7 @@
 		</thead>
 		<tbody>
 			{{#each filterLibrary as |book|}}
+			{{#unless book.isNew}}
 			<tr>
 				<td>{{book.title}}</td>
 				<td>{{book.author}}</td>
@@ -40,6 +51,7 @@
 					<button class='btn btn-danger' {{action (action deleteIsbn book.id)}}>Remove</button>
 				</td>
 			</tr>
+			{{/unless}}
 			{{/each}}
 		</tbody>
 	</table>
