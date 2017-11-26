@@ -4,7 +4,8 @@ var mongoose = require('mongoose');
 var nodeIsbn = require('node-isbn');
 var path = require('path');
 
-mongoose.connect('mongodb://localhost/LibraryApp'); 
+var options = {useMongoClient: true};
+mongoose.connect('mongodb://localhost/LibraryApp', options); 
 
 var bk = mongoose.model('Book',
     new mongoose.Schema({
