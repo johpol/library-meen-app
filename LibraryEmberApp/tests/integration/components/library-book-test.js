@@ -1,8 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Ember from 'ember';
-
-const {$} = Ember;
+import $ from 'jquery';
 
 const model =[
   {
@@ -28,7 +27,7 @@ test('it renders', function(assert) {
   this.set('postIsbn', () => assert.ok(true));
   this.render(hbs`{{library-book model=model postIsbn=(action postIsbn) deleteIsbn=(action deleteIsbn)}}`);
 
-  const tableCells = $('table')["0"].children[1].children["0"].cells;
+  const tableCells = this._element.querySelectorAll('td');
 
   assert.equal(tableCells.length, 6);
   assert.equal(tableCells[0].innerText, 'Some Title');
