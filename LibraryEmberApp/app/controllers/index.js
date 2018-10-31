@@ -9,7 +9,7 @@ export default Controller.extend({
         postIsbn(isbn) {
             console.log(isbn);
 
-            let m = this.get('model');
+            let m = this.model;
             m.forEach(bkModel => {
                 if(!bkModel.get('isValid')) {
                     this.store.unloadRecord(bkModel);

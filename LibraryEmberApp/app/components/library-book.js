@@ -5,8 +5,8 @@ export default Component.extend({
     searchString: '',
     
     filterLibrary: computed('searchString', 'model', function() {
-        let filter = get(this, 'searchString');
-        let model = get(this, 'model');
+        let filter = this.searchString;
+        let model = this.model;
 
         if (filter === '') {
             return model;
@@ -19,8 +19,8 @@ export default Component.extend({
 
     actions: {
         postIsbn() {
-            const isbn = get(this, 'isbn');
-            const postIsbn = get(this, 'postIsbn');
+            const isbn = this.isbn;
+            const postIsbn = this.postIsbn;
             postIsbn(isbn);
             set(this, 'isbn', '');
         }

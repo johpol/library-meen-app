@@ -1,4 +1,7 @@
-import { moduleForModel, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
+
+import { run } from '@ember/runloop';
 
 const bookModel = {
     _id: 'someID',
@@ -10,21 +13,20 @@ const bookModel = {
     subject: 'someSubject'
 };
 
-moduleForModel('book', 'Unit | Model | book', {
-  // Specify the other units that are required for this test.
-  needs: []
-});
+module('Unit | Model | book', function(hooks) {
+  setupTest(hooks);
 
-test('it exists', function(assert) {
-  let model = this.subject(bookModel);
-  // let store = this.store();
-  assert.ok(!!model);
+  test('it exists', function(assert) {
+    let model = run(() => this.owner.lookup('service:store').createRecord('book', bookModel));
+    // let store = this.store();
+    assert.ok(!!model);
 
-  assert.equal(model.get('_id'), 'someID');
-  assert.equal(model.get('title'), 'someTitle');
-  assert.equal(model.get('author'), 'someAuthor');
-  assert.equal(model.get('publisher'), 'somePublisher');
-  assert.equal(model.get('isbn'), 'isbn');
-  assert.equal(model.get('tempIsbn'), 'tempIsbn');
-  assert.equal(model.get('subject'), 'someSubject');
+    assert.equal(model.get('_id'), 'someID');
+    assert.equal(model.get('title'), 'someTitle');
+    assert.equal(model.get('author'), 'someAuthor');
+    assert.equal(model.get('publisher'), 'somePublisher');
+    assert.equal(model.get('isbn'), 'isbn');
+    assert.equal(model.get('tempIsbn'), 'tempIsbn');
+    assert.equal(model.get('subject'), 'someSubject');
+  });
 });
