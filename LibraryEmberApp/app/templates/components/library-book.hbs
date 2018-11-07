@@ -1,58 +1,68 @@
 <style>
-	.bottom-margin {
-		margin-bottom: 30px;
-	}
+    .bottom-margin {
+        margin-bottom: 30px;
+    }
 </style>
-<div class='container'>
-	<h1 class='text-center bottom-margin'>Personal Library</h1>
-	<div class='input-group bottom-margin'>
-		{{input type='text' class='form-control' placeholder='ISBN-10' value=isbn}}
-		<span class='input-group-btn'>
-            <button class='btn btn-primary' type='button' {{action 'postIsbn'}}>Fetch My Book!</button>
+<div class="container">
+    <h1 class="text-center bottom-margin">Personal Library</h1>
+    <div class="input-group bottom-margin">
+        {{input 
+          type="text"
+          class="form-control"
+          placeholder="ISBN-10"
+          value=isbn
+        }}
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" {{action "postIsbn"}}>Fetch My Book!</button>
         </span>
-	</div>
-	<div class='input-group bottom-margin'>
-		<div class='input-group-addon'>
-			<span class='glyphicon glyphicon-search' aria-hidden='true'></span>
-		</div>
-		{{input type='text' class='form-control' placeholder='Search Library' value=searchString}}
-	</div>
-	{{#each filterLibrary as |bk|}}
-		{{#if bk.errors}}
-			<div class="alert alert-danger text-center">
-			{{#each bk.errors as |err|}}
-				{{log err.message}}
-				<strong>{{err.message}}</strong>
-			{{/each}}
-			</div>
-		{{/if}}
-	{{/each}}
-	<table class='table table-striped'>
-		<thead>
-			<tr>
-				<th>Title</th>
-				<th>Author</th>
-				<th>Publisher</th>
-				<th>Subject</th>
-				<th>ISBN</th>
-				<th>Remove</th>
-			</tr>
-		</thead>
-		<tbody>
-			{{#each filterLibrary as |book|}}
-			{{#unless book.isNew}}
-			<tr>
-				<td>{{book.title}}</td>
-				<td>{{book.author}}</td>
-				<td>{{book.publisher}}</td>
-				<td>{{book.subject}}</td>
-				<td>{{book.isbn}}</td>
-				<td>
-					<button class='btn btn-danger' {{action (action deleteIsbn book.id)}}>Remove</button>
-				</td>
-			</tr>
-			{{/unless}}
-			{{/each}}
-		</tbody>
-	</table>
+    </div>
+    <div class="input-group bottom-margin">
+        <div class="input-group-addon">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </div>
+        {{input
+          type="text"
+          class="form-control"
+          placeholder="Search Library"
+          value=searchString
+        }}
+    </div>
+    {{#each filterLibrary as |bk|}}
+        {{#if bk.errors}}
+            <div class="alert alert-danger text-center">
+                {{#each bk.errors as |err|}}
+                    {{log err.message}}
+                    <strong>{{err.message}}</strong>
+                {{/each}}
+            </div>
+        {{/if}}
+    {{/each}}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>Subject</th>
+                <th>ISBN</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each filterLibrary as |book|}}
+                {{#unless book.isNew}}
+                    <tr>
+                        <td>{{book.title}}</td>
+                        <td>{{book.author}}</td>
+                        <td>{{book.publisher}}</td>
+                        <td>{{book.subject}}</td>
+                        <td>{{book.isbn}}</td>
+                        <td>
+                            <button class="btn btn-danger" {{action (action deleteIsbn book.id)}}>Remove</button>
+                        </td>
+                    </tr>
+                {{/unless}}
+            {{/each}}
+        </tbody>
+    </table>
 </div>
